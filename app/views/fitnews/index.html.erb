@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Fitnews</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Is public</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fitnews.each do |fitnews| %>
+      <tr>
+        <td><%= fitnews.title %></td>
+        <td><%= fitnews.content %></td>
+        <td><%= fitnews.is_public %></td>
+        <td><%= link_to 'Show', fitnews %></td>
+        <td><%= link_to 'Edit', edit_fitnews_path(fitnews) %></td>
+        <td><%= link_to 'Destroy', fitnews, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fitnews', new_fitnews_path %>

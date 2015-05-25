@@ -1,0 +1,29 @@
+<%= form_for(@fitnews) do |f| %>
+  <% if @fitnews.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fitnews.errors.count, "error") %> prohibited this fitnews from being saved:</h2>
+
+      <ul>
+      <% @fitnews.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :is_public %><br>
+    <%= f.check_box :is_public %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+<p>
+  <strong>Title:</strong>
+  <%= @fitnews.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @fitnews.content %>
+</p>
+
+<p>
+  <strong>Is public:</strong>
+  <%= @fitnews.is_public %>
+</p>
+
+<%= link_to 'Edit', edit_fitnews_path(@fitnews) %> |
+<%= link_to 'Back', fitnews_index_path %>
