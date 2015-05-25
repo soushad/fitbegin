@@ -5,22 +5,26 @@
 <table>
   <thead>
     <tr>
+      <th>Id</th>
       <th>Title</th>
       <th>Content</th>
       <th>Is public</th>
+      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @fitnews.each do |fitnews| %>
+    <% @fitnews.each do |fitnew| %>
       <tr>
-        <td><%= fitnews.title %></td>
-        <td><%= fitnews.content %></td>
-        <td><%= fitnews.is_public %></td>
-        <td><%= link_to 'Show', fitnews %></td>
-        <td><%= link_to 'Edit', edit_fitnews_path(fitnews) %></td>
-        <td><%= link_to 'Destroy', fitnews, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= fitnew.id %></td>
+        <td><%= fitnew.title %></td>
+        <td><%= fitnew.content %></td>
+        <td><%= fitnew.is_public %></td>
+        <td><%= fitnew.user.try(:email) %></td>
+        <td><%= link_to 'Show', fitnew %></td>
+        <td><%= link_to 'Edit', edit_fitnews_path(fitnew) %></td>
+        <td><%= link_to 'Destroy', fitnew, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

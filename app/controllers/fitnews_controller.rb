@@ -1,6 +1,7 @@
 class FitnewsController < ApplicationController
   before_action :set_fitnews, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:show, :index]
+  before_action :right_user, only: [:edit, :update, :destroy]
   # GET /fitnews
   # GET /fitnews.json
   def index
@@ -24,6 +25,7 @@ class FitnewsController < ApplicationController
   # POST /fitnews
   # POST /fitnews.json
   def create
+    params[:fitnews][:user_id]=current_user.id
     @fitnews = Fitnews.new(fitnews_params)
 
     respond_to do |format|
@@ -69,6 +71,13 @@ class FitnewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fitnews_params
-      params.require(:fitnews).permit(:title, :content, :is_public)
+      params.require(:fitnews).permit(:title, :content, :is_public, :user_id)
+    end
+
+    def right_user
+      unless @fitnews.user_id == current_user.id
+       redirect_to fitnews_index_url
+    end
+
     end
 end
